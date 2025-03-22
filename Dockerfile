@@ -18,15 +18,12 @@ WORKDIR /srt
 #clone the srt repository from GitHub
 RUN git clone https://github.com/Haivision/srt.git .
 RUN ./configure
-RUN make
+RUN make -j${nproc}
 RUN make install
-#expose the port for srt
-EXPOSE 8282
-
 #SLS 
 WORKDIR /srt-live-server
 RUN git clone https://github.com/PowerIRL/srt-live-server.git .
-RUN make
+RUN make -j${nproc}
 RUN chmod +x /srt-live-server/bin/sls
 # Update the linker cache to find shared libraries
 RUN ldconfig
