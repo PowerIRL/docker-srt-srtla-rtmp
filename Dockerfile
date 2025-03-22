@@ -16,18 +16,24 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 #set a working directory
 WORKDIR /srt
 #clone the srt repository from GitHub
-RUN git clone https://github.com/Haivision/srt.git srt
-RUN cd srt && ./configure
-RUN cd srt && make
-RUN cd srt && make install
+RUN git clone https://github.com/Haivision/srt.git .
+RUN ./configure
+RUN make
+RUN make install
 #expose the port for srt
 EXPOSE 8282
 
 #SLS 
 WORKDIR /srt-live-server
-RUN git clone https://github.com/PowerIRL/srt-live-server.git srt-live-server
-RUN cd srt-live-server && make
-RUN cd srt-live-server && mv sls.sh ../sls.sh
-# run the server
-CMD ["sls.sh"]
+RUN git clone https://github.com/PowerIRL/srt-live-server.git .
+RUN make
+RUN chmod +x /srt-live-server/bin/sls
+# Update the linker cache to find shared libraries
+RUN ldconfig
+# Set the LD_LIBRARY_PATH environment variable
+ENV LD_LIBRARY_PATH=/usr/local/lib
+# Expose the necessary ports
+EXPOSE 8282
 EXPOSE 8181
+# Set the default command to run the SRT Live Server
+CMD ["/srt-live-server/bin/sls", "-c", "/srt-live-server/sls.conf"]
