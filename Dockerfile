@@ -26,4 +26,4 @@ RUN git clone --depth 1 https://github.com/BELABOX/srtla.git && \
 # Expose necessary ports
 EXPOSE 8282 8181 5000
 # Set entrypoint to bash for manual control
-CMD ["./bin/sls -c /opt/srt-live-server/sls.conf"]
+CMD ["./srt-live-server/bin/sls -c /opt/srt-live-server/sls.conf"]
