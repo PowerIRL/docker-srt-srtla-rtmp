@@ -1,7 +1,7 @@
 services:
   srt:
     container_name: srt
-    privileged: "true"
+    privileged: true
     build:
       context: .
       dockerfile: Dockerfile
@@ -14,3 +14,12 @@ services:
       /opt/srtla/srtla_rec 5000 127.0.0.1 8282 & 
       /opt/srt-live-server/bin/sls -c /opt/srt-live-server/sls.conf
       "
+
+  nginx-rtmp:
+    container_name: nginx-rtmp
+    build:
+      context: .
+      dockerfile: Dockerfile.rtmp
+    ports:
+      - "1935:1935"    # RTMP port
+      - "80:80"        # HTTP port (though not used in config)
