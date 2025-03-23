@@ -1,15 +1,12 @@
 # Dockerfile.rtmp
 FROM ubuntu:latest
 
-# Install dependencies
+# Install only additional dependencies needed for NGINX RTMP
 RUN apt-get update && apt-get install -y \
-    build-essential \
     libpcre3 libpcre3-dev \
-    libssl-dev \
-    wget \
     zlib1g-dev \
     ffmpeg \
-    git
+    wget
 
 # Download and build nginx with RTMP module
 WORKDIR /tmp
