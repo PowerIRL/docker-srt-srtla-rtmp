@@ -24,8 +24,8 @@ RUN git clone --depth 1 https://github.com/BELABOX/srtla.git && \
     cd srtla && \
     make
 # Expose necessary ports
-EXPOSE 8282 8181 5000
+# EXPOSE 8282 8181 5000
 # Set working directory to where sls binary is located
-WORKDIR /opt/srt-live-server/bin
-# Run SLS with config file
-# CMD ["./sls", "-c", "/opt/srt-live-server/sls.conf"]
+# WORKDIR /opt/srt-live-server/bin
+# # Run SLS with config file
+# # CMD ["./sls", "-c", "/opt/srt-live-server/sls.conf"]
