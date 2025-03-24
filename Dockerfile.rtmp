@@ -6,7 +6,8 @@ RUN apt-get update && apt-get install -y \
     libpcre3 libpcre3-dev \
     zlib1g-dev \
     ffmpeg \
-    wget
+    wget \
+    git
 
 # Download and build nginx with RTMP module
 WORKDIR /tmp
