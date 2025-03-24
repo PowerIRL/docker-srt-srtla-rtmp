@@ -7,7 +7,10 @@ RUN apt-get update && apt-get install -y \
     zlib1g-dev \
     ffmpeg \
     wget \
-    git
+    git \
+    build-essential \
+    libssl-dev \
+    ffmpeg
 
 # Download and build nginx with RTMP module
 WORKDIR /tmp
